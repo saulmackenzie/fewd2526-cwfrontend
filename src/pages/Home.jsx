@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchUsers } from '../apis/fetchUsers';
+import { fetchUsers } from '../apis/allUsers';
 
 function Home() {
     const [users, setUsers] = useState(null);
