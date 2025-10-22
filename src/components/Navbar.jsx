@@ -1,20 +1,10 @@
-import { useState } from "react";
 import useAuthState from "../states/authState";
 
-export default function Navbar() {
-    const [isOpen, setIsOpen] = useState(false);
-    
-    const links = [
-        {label: "Home" , href: "/"},
-        {label: "View Events" , href: "/events"},
-        {label: "My Account" , href: "/account"},
-        {label: "About" , href: "/about"},
-    ];
-    
+export default function Navbar() {   
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#">Family Events App</a>
+              <a class="navbar-brand" href="/">Family Events App</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -29,11 +19,9 @@ export default function Navbar() {
                   <li class="nav-item">
                     <a class="nav-link" href="/account">My Account</a>
                   </li>
-                                
                   <li class="nav-item">
                         <a class="nav-link" href="/about">About Us</a>
                   </li>
-
                 </ul>
                 <form class="d-flex" role="search">
                   <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
