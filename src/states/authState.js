@@ -1,15 +1,69 @@
-import { useState } from "react";
+import React, { createContext, useCallback, useContext, useState } from "react";
+import { login as apiLogin } from "../apis/login";
+import { register as apiRegister} from "../apis/register";
 
-export default function useAuthState() {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+const AuthContext = createContext(null);
 
-    const login = () => {
-        setIsAuthenticated(true);
-    };
+export function AuthProvider({ children }) {
+    const [user, setUser] = useState(() => {
+        try { return JSON.parse(localStorage.getItem("user")); } catch { return null; }
+    });
+    const [token, setToken] = useState(() => localStorage.getItem("token") || null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-    const logout = () => {
-        setIsAuthenticated(false);
-    }
+    const login = useCallback(async (credentials) => {
+        setLoading(true);
+        setError(null);
+        try {
+            const data = await apiLogin(credentials);
+            const u = data.user ?? null;
+            const t = data.token ?? null;
+            setUser(u);
+            setToken(t);
+            localStorage.getItem("user", JSON.stringify(u));
+            if (t) localStorage.setItem("token", t);
+            return data;
+        } catch (err) {
+            setError(err.message || String(err));
+            throw err;
+        } finally {
+            setLoading(false);
+        }
+    }, []);
 
-    return isAuthenticated ? { isAuthenticated, login } : { isAuthenticated, logout };
+    const register = useCallback(async (userData) => {
+        setLoading(true);
+        setError(null);
+        try {
+            const data = await apiRegister(userData);
+            return data;
+        } catch (err) {
+            setError(err.message || String(err));
+            throw err;
+        } finally {
+            setLoading(false);
+        }
+    }, []);
+
+    const logout = useCallback(() => {
+        setUser(null);
+        setToken(null);
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+    }, []);
+
+    const isAuthenticated = Boolean(user || token);
+
+    return (
+        <AuthContext.Provider value={{ user, token, isAuthenticated, loading, error, login, register, logout }}>
+            {children}
+        </AuthContext.Provider>
+    );
+}
+
+export function useAuthState() {
+    const ctx = useContext(AuthContext);
+    if (!ctx) throw new Error("useAuthState must be used within an AuthProvider");
+    return ctx;
 }
