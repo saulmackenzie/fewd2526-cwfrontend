@@ -15,7 +15,7 @@ export function EventsProvider({ children }) {
             const data = await allEvents();
             setEvents(data);
         } catch (err) {
-            setError(err);
+            setError(err?.message ?? String(err));
         } finally {
             setLoading(false);
         }

@@ -6,4 +6,10 @@ export default function useAuthState() {
     const login = () => {
         setIsAuthenticated(true);
     };
+
+    const logout = () => {
+        setIsAuthenticated(false);
+    }
+
+    return isAuthenticated ? { isAuthenticated, login } : { isAuthenticated, logout };
 }
