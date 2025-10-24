@@ -18,12 +18,12 @@ function Login() {
     }
 
     return (
-    <form onSubmit={submit}>
-        <input value={form.username} onChange={e => setForm({...form, username: e.target.value})} />
-        <input type="password" value={form.password} onChange={e => setForm({...form, password: e.target.value})} />
-        <button type="submit" disabled={loading}>Sign in</button>
-        {error && <div>Error: {error}</div>}
-    </form>
+        <form onSubmit={submit}>
+            <input value={form.username} placeholder='Username' onChange={e => setForm({...form, username: e.target.value})} />
+            <input type="password"  placeholder='Password' value={form.password} onChange={e => setForm({...form, password: e.target.value})} />
+            <button type="submit" disabled={loading}>Login</button>
+            {error && <div>Error: {error}</div>}
+        </form>
     );
 }
 

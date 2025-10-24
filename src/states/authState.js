@@ -35,6 +35,7 @@ export function AuthProvider({ children }) {
     const register = useCallback(async (userData) => {
         setLoading(true);
         setError(null);
+        console.log("Registering user with data:", userData);
         try {
             const data = await apiRegister(userData);
             return data;
