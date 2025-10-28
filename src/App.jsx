@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Account from './pages/Account';
 import Catalogue from './pages/Catalogue';
+import Event from './pages/Event';
 
 // Components
 import Navbar from './components/Navbar';
@@ -25,6 +26,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/account" element={<Account />} />
             <Route path="/catalogue" element={<Catalogue />} />
+            <Route path="/event/:id" element={<Event />} />
           </Routes>
         </EventsProvider>
       </AuthProvider>

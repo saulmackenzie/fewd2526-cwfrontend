@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useEventsState } from '../states/eventsState';
 import EventCard from '../components/EventCard';
+
+// States
+import { useEventsState } from '../states/eventsState';
 
 function Home() {
     const { events, loading, error } = useEventsState();

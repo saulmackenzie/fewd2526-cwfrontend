@@ -1,0 +1,14 @@
+.imageContainer {
+    min-height: 320px; /* or whatever height you want */
+    overflow: hidden;
+    display: block;
+}
+
+.imageContainer img {
+    object-fit: cover;
+    display: block;
+}
+
+.detailsContainer {
+    border-left: 1px solid #ccc;
+}

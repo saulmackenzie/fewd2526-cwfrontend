@@ -13,7 +13,7 @@ function Account() {
     
     return (
         <div className="min-vh-100 d-flex align-items-center justify-content-center">
-            <div className="container h-100 mt-4 py-4 border rounded bg-light">
+            <div className="container py-4 border rounded bg-light">
                 {isAuthenticated ? (
                     <Logout />
                 ) : (
