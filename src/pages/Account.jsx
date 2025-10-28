@@ -13,22 +13,20 @@ function Account() {
     
     return (
         <div className="min-vh-100 d-flex align-items-center justify-content-center">
-            <div className="container py-4 border rounded bg-light">
+            <div className="container py-4 border rounded bg-light mb-5">
                 {isAuthenticated ? (
                     <Logout />
                 ) : (
-                    <>
-                        <div className="row justify-content-center">
-                            <div className="col-6">
-                                <h2>Login here</h2>
-                                <Login />
-                            </div>
-                            <div className="col-6">
-                                <h2>Don't have an account with us?</h2>
-                                <Register />
-                            </div>
+                    <div className="row justify-content-center">
+                        <div className="col-6 text-center">
+                            <h5>Have an account with us?</h5>
+                            <Login />
                         </div>
-                    </>
+                        <div className="col-6 text-center">
+                            <h5>Don't have an account with us?</h5>
+                            <Register />
+                        </div>
+                    </div>
                 )}
             </div>
         </div>

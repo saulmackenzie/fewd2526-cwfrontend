@@ -1,6 +1,11 @@
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+
+// States
 import { useAuthState } from '../../states/authState';
+
+// CSS
+import styles from '../css/AuthForm.module.css';
 
 function Register() {
     const { register, login, loading, error } = useAuthState();
@@ -23,10 +28,18 @@ function Register() {
     }
     
     return (
-        <form onSubmit={submit}>
-            <input value={form.username} placeholder='Username' onChange={e => setForm({...form, username: e.target.value})} />
-            <input type="password" placeholder='Password' value={form.password} onChange={e => setForm({...form, password: e.target.value})} />
-            <button type="submit" disabled={loading}>Register</button>
+        <form onSubmit={submit} className="text-center">
+            <ul className="list-unstyled">
+                <li className="m-2">
+                    <input value={form.username} placeholder='Username' onChange={e => setForm({...form, username: e.target.value})} />
+                </li>
+                <li className="m-2">
+                    <input type="password" placeholder='Password' value={form.password} onChange={e => setForm({...form, password: e.target.value})} />
+                </li>
+                <li className="m-2">
+                    <button type="submit" className="btn btn-secondary" disabled={loading}>Register</button>
+                </li>
+            </ul>
             {error && <div>Error: {error}</div>}
         </form>
     );
