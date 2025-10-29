@@ -15,6 +15,7 @@ function Register() {
     const submit = async (e) => {
         e.preventDefault();
         try {
+            if (!form.username || !form.password) throw new Error("Please fill in all fields.");
             console.log("Registering user:", form);
             await register(form);
         } catch (err) {

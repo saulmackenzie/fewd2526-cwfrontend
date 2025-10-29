@@ -3,9 +3,11 @@ import EventCard from '../components/EventCard';
 
 // States
 import { useEventsState } from '../states/eventsState';
+import { useAuthState } from '../states/authState';
 
 function Home() {
     const { events, loading, error } = useEventsState();
+    const { user, isAuthenticated } = useAuthState();
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
@@ -40,16 +42,20 @@ function Home() {
                 </div>
             </form>
 
-            {/* Upcoming events */}
-            <h5 className="mb-3">Upcoming (next 14 days)</h5>
+            
 
-            {/* Event cards */}
-            {Array.isArray(events) && events.length > 0 ? (
-                events.map(evt => (
-                    <EventCard key={evt.id ?? evt._id} event={evt} />
-                ))
-            ) : (
-                <p>No upcoming events.</p>
+            {isAuthenticated && user && (
+                <>
+                    {/* Upcoming Event cards */}
+                    <h5 className="mb-3">Upcoming (next 14 days)</h5>
+                    {Array.isArray(events) && events.length > 0 ? (
+                        events.map(evt => (
+                            <EventCard key={evt.id ?? evt._id} event={evt} />
+                        ))
+                    ) : (
+                        <p>No upcoming events.</p>
+                    )}
+                </>
             )}
         </div>
     );

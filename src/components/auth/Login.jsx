@@ -12,6 +12,8 @@ function Login() {
     const submit = async (e) => {
         e.preventDefault();
         try {
+            if (!form.username || !form.password) throw new Error("Please fill in all fields.");
+            console.log("Logging in user:", form);
             await login(form);
             nav('/');
         } catch (err) {

@@ -3,7 +3,7 @@ export const newEventEntry = async (eventData) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            user: eventData.user,
+            family: eventData.family,
         }),   
     });
     if (!res.ok) throw new Error(`Failed to create new event: HTTP ${res.status}`);

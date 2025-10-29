@@ -3,12 +3,14 @@ import { useParams } from "react-router-dom";
 
 // States
 import { useEventsState } from "../states/eventsState";
+import { useAuthState } from "../states/authState";
 
 // CSS
 import styles from "./css/Event.module.css";
 
 function Event() {
     const { events, loading, error } = useEventsState();
+    const { user, isAuthenticated } = useAuthState();
     const { id } = useParams();
 
     if (loading) return <div>Loading...</div>;
@@ -34,7 +36,6 @@ function Event() {
                       <p>{event.startTime} to {event.endTime}, {event.date}</p>
                       <p>{event?.description ?? "Lorem ipsum dolor sit amet."}</p>
                       <p>Location: {event.location}</p>
-                      <button type="button" className="btn btn-primary">Join Event</button>
                     </div>
                 </div>
             </div>
