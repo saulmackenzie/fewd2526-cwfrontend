@@ -51,6 +51,7 @@ export function AuthProvider({ children }) {
             setError(err.message || String(err));
             throw err;
         } finally {
+            console.log("Finished registration attempt");
             setLoading(false);
         }
     }, []);
