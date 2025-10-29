@@ -19,9 +19,9 @@ function Home() {
         <div className="container mt-4 py-4">
             {/* Family context + add event jumbotron */}
             <div className="p-4 p-md-5 text-white rounded bg-dark mb-3">
-                <h1>Welcome, Smiths!</h1>
+                <h1>Welcome{isAuthenticated && ( <span>, {user.username}</span> )}!</h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum consequatur impedit quae sit cumque? Natus minima repudiandae officiis maiores quas, quibusdam unde! Voluptate ad doloribus ullam consequuntur delectus explicabo nisi.</p>
-                <button type="button" class="btn btn-light">View Your Events</button>
+                {isAuthenticated && ( <button type="button" class="btn btn-light">View Your Events</button> )}
             </div>
 
             {/* Search & filter */}
