@@ -17,12 +17,20 @@ export function AuthProvider({ children }) {
         setError(null);
         try {
             const data = await apiLogin(credentials);
-            const u = data.user ?? null;
+            const u = {
+                username: data.username ?? null,
+                role: data.userrole ?? null,
+                familyId: data.userfamily ?? null,
+            };
             const t = data.token ?? null;
             setUser(u);
             setToken(t);
-            localStorage.getItem("user", JSON.stringify(u));
-            if (t) localStorage.setItem("token", t);
+            console.log("Logged in user:", u, "\nwith token:", t);
+            localStorage.setItem("user", JSON.stringify(u));
+            if (t) {
+                localStorage.setItem("token", t);
+                if (data.expiresIn) localStorage.setItem("token_expires", String(data.expiresIn));
+            } 
             return data;
         } catch (err) {
             setError(err.message || String(err));
