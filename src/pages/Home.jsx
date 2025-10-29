@@ -13,6 +13,7 @@ function Home() {
     if (error) return <div>Error: {error}</div>;
 
     console.log(events);
+    console.log("User:", user, "\nAuthenticated:", isAuthenticated);
 
     return (
         <div className="container mt-4 py-4">
@@ -42,9 +43,7 @@ function Home() {
                 </div>
             </form>
 
-            
-
-            {isAuthenticated && user && (
+            {isAuthenticated && (
                 <>
                     {/* Upcoming Event cards */}
                     <h5 className="mb-3">Upcoming (next 14 days)</h5>
