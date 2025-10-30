@@ -1,6 +1,9 @@
 import React, {createContext, useContext, useCallback, useEffect, useState} from "react";
 import { allEvents } from "../apis/allEvents";
 
+// States
+import { useAuthState } from "./authState";
+
 const EventsContext = createContext(null);
 
 export function EventsProvider({ children }) {
@@ -8,18 +11,26 @@ export function EventsProvider({ children }) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    const { user, isAuthenticated } = useAuthState();
+
     const load = useCallback(async () => {
         setLoading(true);
+        if (!isAuthenticated || !user) {
+            // Return if user is not authenticated
+            setEvents(null);
+            setLoading(false);
+            return;
+        }
         setError(null);
         try {
-            const data = await allEvents();
+            const data = await allEvents(user.familyId);
             setEvents(data);
         } catch (err) {
             setError(err?.message ?? String(err));
         } finally {
             setLoading(false);
         }
-    }, []);
+    }, [isAuthenticated, user]);
 
     useEffect(() => {
         load();

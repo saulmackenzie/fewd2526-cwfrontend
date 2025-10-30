@@ -1,5 +1,5 @@
-export const allEvents = async () => {
-    const res = await fetch('http://localhost:3002/all-events', {
+export const allEvents = async (familyId) => {
+    const res = await fetch(`http://localhost:3002/all-events?familyId=${encodeURIComponent(familyId)}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     });
