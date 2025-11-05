@@ -3,22 +3,25 @@ import EventCard from '../components/EventCard';
 
 // States
 import { useEventsState } from '../states/eventsState';
+import { useAuthState } from '../states/authState';
 
 function Home() {
     const { events, loading, error } = useEventsState();
+    const { user, isAuthenticated } = useAuthState();
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
 
     console.log(events);
+    console.log("User:", user, "\nAuthenticated:", isAuthenticated);
 
     return (
         <div className="container mt-4 py-4">
             {/* Family context + add event jumbotron */}
             <div className="p-4 p-md-5 text-white rounded bg-dark mb-3">
-                <h1>Welcome, Smiths!</h1>
+                <h1>Welcome{isAuthenticated && ( <span>, {user.username}</span> )}!</h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum consequatur impedit quae sit cumque? Natus minima repudiandae officiis maiores quas, quibusdam unde! Voluptate ad doloribus ullam consequuntur delectus explicabo nisi.</p>
-                <button type="button" class="btn btn-light">View Your Events</button>
+                {isAuthenticated && ( <button type="button" class="btn btn-light">View Your Events</button> )}
             </div>
 
             {/* Search & filter */}
@@ -40,16 +43,18 @@ function Home() {
                 </div>
             </form>
 
-            {/* Upcoming events */}
-            <h5 className="mb-3">Upcoming (next 14 days)</h5>
-
-            {/* Event cards */}
-            {Array.isArray(events) && events.length > 0 ? (
-                events.map(evt => (
-                    <EventCard key={evt.id ?? evt._id} event={evt} />
-                ))
-            ) : (
-                <p>No upcoming events.</p>
+            {isAuthenticated && (
+                <>
+                    {/* Upcoming Event cards */}
+                    <h5 className="mb-3">Upcoming (next 14 days)</h5>
+                    {Array.isArray(events) && events.length > 0 ? (
+                        events.map(evt => (
+                            <EventCard key={evt.id ?? evt._id} event={evt} />
+                        ))
+                    ) : (
+                        <p>No upcoming events.</p>
+                    )}
+                </>
             )}
         </div>
     );

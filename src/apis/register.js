@@ -5,7 +5,6 @@ export const register = async (userData) => {
         body: JSON.stringify({
             username: userData.username,
             password: userData.password,
-            family: userData.family,
         }),
     });
     if (!res.ok) throw new Error(`Failed to register user: HTTP ${res.status}`);

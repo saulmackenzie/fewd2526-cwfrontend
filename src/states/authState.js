@@ -2,6 +2,9 @@ import React, { createContext, useCallback, useContext, useState } from "react";
 import { login as apiLogin } from "../apis/login";
 import { register as apiRegister} from "../apis/register";
 
+// States
+import { useEventsState } from "./eventsState";
+
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
@@ -17,12 +20,20 @@ export function AuthProvider({ children }) {
         setError(null);
         try {
             const data = await apiLogin(credentials);
-            const u = data.user ?? null;
+            const u = {
+                username: data.username ?? null,
+                role: data.userrole ?? null,
+                familyId: data.userfamily ?? null,
+            };
             const t = data.token ?? null;
             setUser(u);
             setToken(t);
-            localStorage.getItem("user", JSON.stringify(u));
-            if (t) localStorage.setItem("token", t);
+            console.log("Logged in user:", u, "\nwith token:", t);
+            localStorage.setItem("user", JSON.stringify(u));
+            if (t) {
+                localStorage.setItem("token", t);
+                if (data.expiresIn) localStorage.setItem("token_expires", String(data.expiresIn));
+            } 
             return data;
         } catch (err) {
             setError(err.message || String(err));
@@ -43,6 +54,7 @@ export function AuthProvider({ children }) {
             setError(err.message || String(err));
             throw err;
         } finally {
+            console.log("Finished registration attempt");
             setLoading(false);
         }
     }, []);
