@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import EventCard from '../components/EventCard';
 
 // States
@@ -7,7 +8,7 @@ import { useAuthState } from '../states/authState';
 
 function Home() {
     const { events, loading, error } = useEventsState();
-    const { user, isAuthenticated } = useAuthState();
+    const { user, isAuthenticated } = useAuthState(); 
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
@@ -21,7 +22,16 @@ function Home() {
             <div className="p-4 p-md-5 text-white rounded bg-dark mb-3">
                 <h1>Welcome{isAuthenticated && ( <span>, {user.username}</span> )}!</h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum consequatur impedit quae sit cumque? Natus minima repudiandae officiis maiores quas, quibusdam unde! Voluptate ad doloribus ullam consequuntur delectus explicabo nisi.</p>
-                {isAuthenticated && ( <button type="button" class="btn btn-light">View Your Events</button> )}
+                {isAuthenticated && ( 
+                    <div className="row">
+                        <div className='col-lg-3 col-md-3 col-sm-12'>
+                            <Link to="/catalogue"><button type="button" class="btn btn-light">Your Catalogue</button></Link>
+                        </div>
+                        <div className='col-lg-3 col-md-3 col-sm-12'>
+                            <Link to="/new-event"><button type="button" class="btn btn-light">Create New Event</button></Link> 
+                        </div>
+                    </div>
+                )}
             </div>
 
             {/* Search & filter */}
