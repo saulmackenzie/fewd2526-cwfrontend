@@ -1,17 +1,22 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // States
 import { useEventsState } from "../states/eventsState";
 import { useAuthState } from "../states/authState";
 
+// API
+import deleteEvent from "../apis/deleteEvent";
+
 // CSS
 import styles from "./css/Event.module.css";
 
 function Event() {
-    const { events, loading, error } = useEventsState();
+    const { events, loading, error, refresh } = useEventsState();
     const { user, isAuthenticated } = useAuthState();
     const { id } = useParams();
+    const nav = useNavigate();
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
@@ -22,7 +27,17 @@ function Event() {
 
     console.log("Event:", event);
 
-    if (!event) return <div>Event not found</div>;
+    if (!event) return <div>Event does not exist or is not assigned to your family</div>;
+
+    const handleDeleteEvent = async () => {
+        try {
+            await deleteEvent(event);
+            refresh();
+            nav("/");
+        } catch (err) {
+            console.error("Error:", err);
+        }
+    };
 
     return (
         <div className="container mx-auto py-4">
@@ -36,6 +51,7 @@ function Event() {
                       <p>{event.startTime} to {event.endTime}, {event.date}</p>
                       <p>{event?.description ?? "Lorem ipsum dolor sit amet."}</p>
                       <p>Location: {event.location}</p>
+                      <button type="button" className="btn btn-danger" onClick={handleDeleteEvent}>Delete Event</button>
                     </div>
                 </div>
             </div>
