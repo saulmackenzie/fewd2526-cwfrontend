@@ -9,12 +9,14 @@ import { useAuthState } from "../states/authState";
 // API
 import deleteEvent from "../apis/deleteEvent";
 
+// Components
+import EditEventForm from "../components/events/EditEventForm";
+
 // CSS
 import styles from "./css/Event.module.css";
 
 function Event() {
     const { events, loading, error, refresh } = useEventsState();
-    const { user, isAuthenticated } = useAuthState();
     const { id } = useParams();
     const nav = useNavigate();
 
@@ -48,13 +50,17 @@ function Event() {
                 <div className={`col-6 ${styles.detailsContainer}`}>
                     <h1>{event.event ?? "Untitled Event"}</h1>
                     <div>
-                      <p>{event.startTime} to {event.endTime}, {event.date}</p>
-                      <p>{event?.description ?? "Lorem ipsum dolor sit amet."}</p>
-                      <p>Location: {event.location}</p>
-                      <button type="button" className="btn btn-danger" onClick={handleDeleteEvent}>Delete Event</button>
+                        <p>{event.startTime} to {event.endTime}, {event.date}</p>
+                        <p>{event?.description ?? "Lorem ipsum dolor sit amet."}</p>
+                        <p>Location: {event.location}</p>
+                        <button type="button" className="btn btn-danger" onClick={handleDeleteEvent}>Delete Event</button>
+                        <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Edit Event
+                        </button>
                     </div>
                 </div>
             </div>
+            <EditEventForm eventData={event}/>
         </div>
     );
 }

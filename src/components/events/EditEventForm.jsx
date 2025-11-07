@@ -1,29 +1,39 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 // States
-import { useAuthState } from '../../states/authState';
-import { useEventsState } from '../../states/eventsState';
+import { useEventsState } from "../../states/eventsState";
+import { useAuthState } from "../../states/authState";
 
-function NewEvent() {
-    const {user, isAuthenticated} = useAuthState();
-    const {addEvent} = useEventsState();
+// API
+import editEvent from "../../apis/updateEvent";
+
+function EditEventForm({ eventData }) {
+    const { refresh } = useEventsState();
+    const { user } = useAuthState();
     const [form, setForm] = useState({ 
         event:          '', 
         date:           '',
         startTime:      '',
         endTime:        '',
         location:       '',
-        requiredItems:  '',
+        requiredItems:  ''
     });
     const [validForm, setValidForm] = useState(false);
     
-    const nav = useNavigate();
+    const id = eventData._id;
 
-    useEffect(() => {  
-        console.log("Checking auth status");
-        if (!user || !isAuthenticated) nav("/");
-    }, [isAuthenticated, user, nav]);
+    useEffect(() => {
+        if (eventData) {
+            setForm({
+                event:          eventData.event ?? '', 
+                date:           eventData.date ?? '',
+                startTime:      eventData.startTime ?? '',
+                endTime:        eventData.endTime ?? '',
+                location:       eventData.location ?? '',
+                requiredItems:  eventData.requiredItems ?? ''
+            });
+        }
+    }, [eventData]);
 
     const checkValid = () => {
         const isValid = () => {
@@ -39,36 +49,43 @@ function NewEvent() {
         setValidForm(isValid);
     };
 
-    const submit = async (e) => {
-        e.preventDefault();
+    const handleEditEvent = async () => {
         try {
-            const eventData = {
+            eventData = {
+                id:             id,
                 event:          form.event,
                 date:           form.date,
                 startTime:      form.startTime,
                 endTime:        form.endTime,
                 location:       form.location,
                 requiredItems:  form.requiredItems,
-                username:       user.username,
-                userfamily:     user.familyId,
-                userrole:       user.role
+                user:           user.username,
+                familyId:       user.familyId,
             };
-            await addEvent(eventData);
-            nav("/");
+            console.log(eventData);
+            await editEvent(eventData);
+            await refresh();
         } catch (err) {
-            console.log("Creating new event failed:", err);
+            console.error("Edit failed:", err);
         }
     };
 
     return (
-        <div className="container mt-4 py-4">
-            <h5>New Event Menu</h5>
-            <form onSubmit={submit} className="row g-2 align-items-center mb-3">
+        <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h1 className="modal-title fs-5" id="exampleModalLabel">Edit {eventData.event}</h1>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div className="modal-body">
+                 <form onSubmit={handleEditEvent} className="row g-2 align-items-center mb-3">
                 <div className="col-md-3">
                     <label className="form-label">Event Name:</label>
                     <input 
                         className="form-control"
                         placeholder="Swimming, Tennis..."
+                        value={`${form.event}`}
                         onChange={e => {
                             setForm({...form, event: e.target.value})   
                             checkValid();
@@ -80,6 +97,7 @@ function NewEvent() {
                     <input 
                         type="date"
                         className="form-control" 
+                        value={`${form.date}`}
                         onChange={e => {
                             setForm({...form, date: e.target.value})   
                             checkValid();
@@ -91,6 +109,7 @@ function NewEvent() {
                     <input 
                         type="time" 
                         className="form-control"
+                        value={`${form.startTime}`}
                         onChange={e => {
                             setForm({...form, startTime: e.target.value})   
                             checkValid();
@@ -102,6 +121,7 @@ function NewEvent() {
                     <input
                         type="time"
                         className="form-control"
+                        value={`${form.endTime}`}
                         onChange={e => {
                             setForm({...form, endTime: e.target.value})   
                             checkValid();
@@ -113,6 +133,7 @@ function NewEvent() {
                     <input 
                         className="form-control" 
                         placeholder="Swim Centre, Tennis Park... "
+                        value={`${form.location}`}
                         onChange={e => {
                             setForm({...form, location: e.target.value})   
                             checkValid();
@@ -124,6 +145,7 @@ function NewEvent() {
                     <input 
                         className="form-control" 
                         placeholder="Trunks, Tennis Racket... "
+                        value={`${form.requiredItems}`}
                         onChange={e => {
                             setForm({...form, requiredItems: e.target.value})   
                             checkValid();
@@ -131,12 +153,17 @@ function NewEvent() {
                     />
                 </div>
 
-                <div className="col-md-2 d-grid">
-                    <button type="submit" className="btn btn-outline-secondary" disabled={!validForm}>Create Event</button>
-                </div>
+                <button type="submit" className="btn btn-primary" disabled={!validForm}>Save changes</button>
+
             </form>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
         </div>
     );
 }
 
-export default NewEvent;
+export default EditEventForm;
