@@ -5,7 +5,7 @@ import { useEventsState } from "../../states/eventsState";
 import { useAuthState } from "../../states/authState";
 
 // API
-import editEvent from "../../apis/updateEvent";
+import editEvent from "../../apis/editEvent";
 
 function EditEventForm({ eventData }) {
     const { refresh } = useEventsState();
