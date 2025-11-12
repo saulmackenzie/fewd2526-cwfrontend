@@ -6,7 +6,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Account from './pages/Account';
 import Catalogue from './pages/Catalogue';
-import Event from './pages/Event';
+import Event from './pages/events/Event';
 import NewEvent from './pages/events/NewEvent';
 
 // Components

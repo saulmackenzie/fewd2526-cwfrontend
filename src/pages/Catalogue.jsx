@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 // States
 import { useEventsState } from "../states/eventsState";
-import EventCard from '../components/EventCard';
+import EventCard from '../components/events/EventCard';
 
 function Catalogue() {
     const { events, loading, error } = useEventsState();

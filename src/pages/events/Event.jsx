@@ -3,17 +3,17 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 // States
-import { useEventsState } from "../states/eventsState";
-import { useAuthState } from "../states/authState";
+import { useEventsState } from "../../states/eventsState";
+import { useAuthState } from "../../states/authState";
 
 // API
-import deleteEvent from "../apis/deleteEvent";
+import deleteEvent from "../../apis/deleteEvent";
 
 // Components
-import EditEventForm from "../components/events/EditEventForm";
+import EditEventForm from "../../components/events/EditEventForm";
 
 // CSS
-import styles from "./css/Event.module.css";
+import styles from "../css/Event.module.css";
 
 function Event() {
     const { events, loading, error, refresh } = useEventsState();

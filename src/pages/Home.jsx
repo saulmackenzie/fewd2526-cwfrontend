@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import EventCard from '../components/EventCard';
+import EventCard from '../components/events/EventCard';
 
 // States
 import { useEventsState } from '../states/eventsState';
