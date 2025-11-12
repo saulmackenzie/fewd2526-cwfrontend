@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
+// Components
 import EventCard from '../components/events/EventCard';
+import SearchBar from '../components/events/SearchBar';
 
 // States
 import { useEventsState } from '../states/eventsState';
@@ -10,11 +13,20 @@ function Home() {
     const { events, loading, error } = useEventsState();
     const { user, isAuthenticated } = useAuthState(); 
 
+    const [searchTerm, setSearchTerm] = useState('');
+
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
 
     console.log(events);
     console.log("User:", user, "\nAuthenticated:", isAuthenticated);
+
+    const filteredEvents = Array.isArray(events)
+        ? events.filter(evt => {
+            const title = String(evt?.event ?? '').toLowerCase();
+            return title.includes((searchTerm || '').toLowerCase());
+        })
+        : [];
 
     return (
         <div className="container mt-4 py-4">
@@ -34,31 +46,17 @@ function Home() {
                 )}
             </div>
 
-            {/* Search & filter */}
-            <form className="row g-2 align-items-center mb-3">
-                <div className="col-md-4">
-                    <label className="form-label">Search</label>
-                    <input className="form-control" placeholder="name, location, equipment" />
-                </div>
-                <div className="col-md-3">
-                    <label className="form-label">From</label>
-                    <input type="date" className="form-control" />
-                </div>
-                <div className="col-md-3">
-                    <label className="form-label">To</label>
-                    <input type="date" className="form-control" />
-                </div>
-                <div className="col-md-2 d-grid">
-                    <button type="submit" className="btn btn-outline-secondary">Apply</button>
-                </div>
-            </form>
+            <SearchBar 
+                value={searchTerm}
+                onChange={(val) => setSearchTerm(val)}
+            />
 
             {isAuthenticated && (
                 <>
                     {/* Upcoming Event cards */}
                     <h5 className="mb-3">Upcoming (next 14 days)</h5>
-                    {Array.isArray(events) && events.length > 0 ? (
-                        events.map(evt => (
+                    {filteredEvents.length > 0 ? (
+                        filteredEvents.map(evt => (
                             <EventCard key={evt.id ?? evt._id} event={evt} />
                         ))
                     ) : (
