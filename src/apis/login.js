@@ -4,6 +4,7 @@ export const login = async (credentials) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             username: credentials.username,
+            password: credentials.password,
             role: credentials.role,
             familyId: credentials.familyId,
         }),

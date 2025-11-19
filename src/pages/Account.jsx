@@ -15,7 +15,10 @@ function Account() {
         <div className="min-vh-100 d-flex align-items-center justify-content-center">
             <div className="container py-4 border rounded bg-light mb-5">
                 {isAuthenticated ? (
-                    <Logout />
+                    <div className="text-center">
+                        <h5>Do you wish to log out?</h5>
+                        <Logout />
+                    </div>
                 ) : (
                     <div className="row justify-content-center">
                         <div className="col-6 text-center">
