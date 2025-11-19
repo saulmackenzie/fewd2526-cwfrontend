@@ -1,5 +1,5 @@
 export const newEvent = async (eventData) => {
-    const res = await fetch('http://localhost:3002/new-event-entry', {
+    const res = await fetch('http://localhost:3002/post-new-event', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -11,6 +11,7 @@ export const newEvent = async (eventData) => {
             requiredItems: eventData.requiredItems,
             username: eventData.username,
             userfamily: eventData.userfamily,
+            userrole: eventData.userrole
         }),
     });
     if (!res.ok) throw new Error(`Failed to create new event: HTTP ${res.status}`);
