@@ -2,12 +2,12 @@ import React from "react";
 
 function SearchBar({ value = '', onChange = () => {}}) {
     return (
-        <form className="row g-2 align-items-center mb-3">
+        <form className="row g-2 align-items-center mb-4">
             <div className="col-md-4">
-                <label className="form-label">Search</label>
+                <label className="form-label"><h4 className="fw-light">Search</h4></label>
                 <input 
                     className="form-control" 
-                    placeholder="name, location, equipment"
+                    placeholder="event name"
                     value={value}
                     onChange={(e) => onChange(e.target.value)}
                 />

@@ -11,6 +11,7 @@ import NewEvent from './pages/events/NewEvent';
 
 // Components
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 // States
 import { AuthProvider } from './states/authState';
@@ -30,6 +31,7 @@ function App() {
             <Route path="/event/:id" element={<Event />} />
             <Route path="/new-event" element={<NewEvent />} />
           </Routes>
+          <Footer />
         </EventsProvider>
       </AuthProvider>
     </BrowserRouter>
