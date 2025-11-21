@@ -8,3 +8,8 @@
     transform: scale(0.95);
     transition: transform 75ms ease;
 }
+
+.ecBg:hover {
+    transform: translateY(-5px);
+    transition: transform 150ms ease;
+}

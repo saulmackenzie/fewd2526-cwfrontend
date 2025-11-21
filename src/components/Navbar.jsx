@@ -6,7 +6,7 @@ export default function Navbar() {
   const { user, isAuthenticated } = useAuthState();
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow-sm">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark ui-gradient sticky-top shadow-sm">
       <div className="container-fluid">
         <Link className="navbar-brand fw-semibold" to="/">NestPlan</Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

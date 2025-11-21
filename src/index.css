@@ -5,10 +5,15 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #e9ecef !important;
+  background-color: var(--bs-dark) !important;
+  background: linear-gradient(135deg, #1f2937, #111827);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.ui-gradient {
+  background: linear-gradient(135deg, #1f2937, #111827);
 }

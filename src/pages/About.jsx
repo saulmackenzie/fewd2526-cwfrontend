@@ -1,10 +1,10 @@
 function About() {
     return (
         <div className="container mt-4 py-4">
-            <h1>About NestPlan</h1>
+            <h1 className="text-white display-5">About<span className="fw-semibold"> NestPlan</span></h1>
             <section className="mb-5">
-                <div className="lead">
-                    <p>NestPlan helps families plan and manage fun events and days out, making it easy to stay organised and connected.</p>
+                <div className="lead text-white">
+                    <p><span className="fw-semibold">NestPlan</span> helps families plan and manage fun events and days out, making it easy to stay organised and connected.</p>
                     <p>Our focus is on family-friendly outings: create event itineraries, coordinate who brings what, and keep everyone informed before, during and after the day.</p>
                 </div>
 

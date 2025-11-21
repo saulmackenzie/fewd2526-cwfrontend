@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer() {
     return (
-        <footer class="bg-primary text-white py-4">
+        <footer class="bg-dark ui-gradient text-white py-4">
             <div class="container text-center">
                 <p>© 2025 NestPlan, Inc. All rights reserved.</p>
                 <ul class="list-inline">

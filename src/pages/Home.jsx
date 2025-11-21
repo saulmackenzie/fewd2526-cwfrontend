@@ -31,11 +31,11 @@ function Home() {
         : [];
 
     return (
-        <div className="container mt-4 py-4">
+        <div className="container mt-4 py-4 mx-auto px-3 px-md-0">
             {/* Family context + add event jumbotron */}
-            <div className="p-4 p-md-5 text-white rounded bg-dark mb-5 shadow">
-                <h1>Welcome{isAuthenticated && ( <span>, {user.username}</span> )}!</h1>
-                <p>Plan and manage your family's events with ease.</p>
+            <div className={`p-4 p-md-5 text-white rounded bg-dark mb-5 shadow ui-gradient ${styles.heroSection}`}>
+                <h1 className="display-4 fw-bold">Welcome{isAuthenticated && ( <span>, {user.username}</span> )}!</h1>
+                <p className="lead mb-4">Plan and manage your family's events with ease.</p>
                 {isAuthenticated && ( 
                     <div className="row text-center">
                         <div className='col-6'>
@@ -56,7 +56,7 @@ function Home() {
             {isAuthenticated && (
                 <div className='mb-5'>
                     {/* Upcoming Event cards */}
-                    <h4 className="mb-3 fw-light">Upcoming Events</h4>
+                    <h4 className="mb-3 fw-light text-white">Upcoming Events</h4>
                     {filteredEvents.length > 0 ? (
                         filteredEvents.map(evt => (
                             <EventCard key={evt.id ?? evt._id} event={evt} />
