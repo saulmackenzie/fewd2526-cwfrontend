@@ -6,7 +6,7 @@ function SearchBar({ value = '', onChange = () => {}}) {
             <div className="col-md-4">
                 <label className="form-label"><h4 className="fw-light">Search</h4></label>
                 <input 
-                    className="form-control" 
+                    className="form-control shadow-sm" 
                     placeholder="event name"
                     value={value}
                     onChange={(e) => onChange(e.target.value)}
