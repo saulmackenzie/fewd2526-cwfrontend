@@ -62,12 +62,12 @@ function NewEvent() {
 
     return (
         <div className="container mt-4 py-4">
-            <h5>New Event Menu</h5>
+            <h5 className="text-white">New Event Menu</h5>
             <form onSubmit={submit} className="row g-2 align-items-center mb-3">
                 <div className="col-md-3">
-                    <label className="form-label">Event Name:</label>
+                    <label className="form-label text-white">Event Name:</label>
                     <input 
-                        className="form-control"
+                        className="form-control input-glass"
                         placeholder="Swimming, Tennis..."
                         onChange={e => {
                             setForm({...form, event: e.target.value})   
@@ -76,10 +76,10 @@ function NewEvent() {
                     />
                 </div>
                 <div className="col-md-3">
-                    <label className="form-label">Date:</label>
+                    <label className="form-label text-white">Date:</label>
                     <input 
                         type="date"
-                        className="form-control" 
+                        className="form-control input-glass" 
                         onChange={e => {
                             setForm({...form, date: e.target.value})   
                             checkValid();
@@ -87,10 +87,10 @@ function NewEvent() {
                     />
                 </div>
                 <div className="col-md-3">
-                    <label className="form-label">Start Time:</label>
+                    <label className="form-labe text-white">Start Time:</label>
                     <input 
                         type="time" 
-                        className="form-control"
+                        className="form-control input-glass"
                         onChange={e => {
                             setForm({...form, startTime: e.target.value})   
                             checkValid();
@@ -98,10 +98,10 @@ function NewEvent() {
                     />
                 </div>
                 <div className="col-md-3">
-                    <label className="form-label">End Time:</label>
+                    <label className="form-label text-white">End Time:</label>
                     <input
                         type="time"
-                        className="form-control"
+                        className="form-control input-glass"
                         onChange={e => {
                             setForm({...form, endTime: e.target.value})   
                             checkValid();
@@ -109,9 +109,9 @@ function NewEvent() {
                     />
                 </div>
                 <div className="col-md-3">
-                    <label className="form-label">Location:</label>
+                    <label className="form-label text-white">Location:</label>
                     <input 
-                        className="form-control" 
+                        className="form-control input-glass" 
                         placeholder="Swim Centre, Tennis Park... "
                         onChange={e => {
                             setForm({...form, location: e.target.value})   
@@ -120,9 +120,9 @@ function NewEvent() {
                     />
                 </div>
                 <div className="col-md-3">
-                    <label className="form-label">Required Items:</label>
+                    <label className="form-label text-white">Required Items:</label>
                     <input 
-                        className="form-control" 
+                        className="form-control input-glass" 
                         placeholder="Trunks, Tennis Racket... "
                         onChange={e => {
                             setForm({...form, requiredItems: e.target.value})   

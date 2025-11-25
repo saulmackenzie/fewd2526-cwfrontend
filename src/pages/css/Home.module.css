@@ -1,14 +1,3 @@
-.heroButton:hover {
-    transform: scale(1.105);
-    transition: transform 150ms ease;
-    color: #0d6efd !important;
-}
-
-.heroButton:active {
-    transform: scale(0.95);
-    transition: transform 75ms ease;
-}
-
 .heroSection {
   position: relative; 
   z-index: 0;         

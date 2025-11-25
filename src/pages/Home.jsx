@@ -33,16 +33,16 @@ function Home() {
     return (
         <div className="container mt-4 py-4 mx-auto px-3 px-md-0">
             {/* Family context + add event jumbotron */}
-            <div className={`p-4 p-md-5 text-white rounded bg-dark mb-5 shadow ui-gradient ${styles.heroSection}`}>
+            <div className={`p-5 p-md-5 text-white rounded bg-dark mb-5 shadow ui-gradient ${styles.heroSection}`}>
                 <h1 className="display-4 fw-bold">Welcome{isAuthenticated && ( <span>, {user.username}</span> )}!</h1>
                 <p className="lead mb-4">Plan and manage your family's events with ease.</p>
                 {isAuthenticated && ( 
                     <div className="row text-center">
-                        <div className='col-6'>
-                            <Link to="/catalogue"><button type="button" className={`btn btn-primary-outline w-100 py-3 text-white fs-3 ${styles.heroButton}`}>Your Catalogue</button></Link>
+                        <div className='col-md-6 col-sm-12'>
+                            <Link to="/catalogue"><button type="button" className="btn btn-primary-outline w-100 py-4 text-white fs-3 btn-scale">Your Catalogue</button></Link>
                         </div>
-                        <div className='col-6'>
-                            <Link to="/new-event"><button type="button" className={`btn btn-primary-outline w-100 py-3 text-white fs-3 ${styles.heroButton}`}>Create New Event</button></Link> 
+                        <div className='col-md-6 col-sm-12'>
+                            <Link to="/new-event"><button type="button" className="btn btn-primary-outline w-100 py-4 text-white fs-3 btn-scale">Create New Event</button></Link> 
                         </div>
                     </div>
                 )}
@@ -57,13 +57,15 @@ function Home() {
                 <div className='mb-5'>
                     {/* Upcoming Event cards */}
                     <h4 className="mb-3 fw-light text-white">Upcoming Events</h4>
-                    {filteredEvents.length > 0 ? (
-                        filteredEvents.map(evt => (
-                            <EventCard key={evt.id ?? evt._id} event={evt} />
-                        ))
-                    ) : (
-                        <p>No upcoming events.</p>
-                    )}
+                    <div className="row">
+                        {filteredEvents.length > 0 ? (
+                            filteredEvents.map(evt => (
+                                <EventCard key={evt.id ?? evt._id} event={evt} />
+                            ))
+                        ) : (
+                            <p>No upcoming events.</p>
+                        )}
+                    </div>
                 </div>
             )}
         </div>
