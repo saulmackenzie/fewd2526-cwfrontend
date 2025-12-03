@@ -78,7 +78,10 @@ function NewEvent() {
                 <div className="col-md-3">
                     <label className="form-label text-white">Date:</label>
                     <input 
-                        type="date"
+                        type="text"
+                        placeholder="dd/mm/yyyy"
+                        onFocus={e => (e.target.type = "date")}
+                        onBlur={e => { if (!e.target.value) e.target.type = "text"; }}
                         className="form-control input-glass" 
                         onChange={e => {
                             setForm({...form, date: e.target.value})   
@@ -89,7 +92,10 @@ function NewEvent() {
                 <div className="col-md-3">
                     <label className="form-labe text-white">Start Time:</label>
                     <input 
-                        type="time" 
+                        type="text"
+                        placeholder="--:--"
+                        onFocus={e => (e.target.type = "time")}
+                        onBlur={e => { if (!e.target.value) e.target.type = "text"; }}
                         className="form-control input-glass"
                         onChange={e => {
                             setForm({...form, startTime: e.target.value})   
@@ -101,6 +107,9 @@ function NewEvent() {
                     <label className="form-label text-white">End Time:</label>
                     <input
                         type="time"
+                        placeholder="--:--"
+                        onFocus={e => (e.target.type = "time")}
+                        onBlur={e => { if (!e.target.value) e.target.type = "text"; }}
                         className="form-control input-glass"
                         onChange={e => {
                             setForm({...form, endTime: e.target.value})   
@@ -132,7 +141,7 @@ function NewEvent() {
                 </div>
 
                 <div className="col-md-2 d-grid">
-                    <button type="submit" className="btn btn-outline-secondary" disabled={!validForm}>Create Event</button>
+                    <button type="submit" className="btn btn-primary-outline text-white btn-scale" disabled={!validForm}>Create Event</button>
                 </div>
             </form>
         </div>

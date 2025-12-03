@@ -34,3 +34,8 @@
   pointer-events: none;
   z-index: -1;
 }
+
+.homeImg:hover {
+  transform: translateY(-5px);
+  transition: transform 150ms ease;
+}

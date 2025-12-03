@@ -39,7 +39,7 @@ function Home() {
                 {isAuthenticated && ( 
                     <div className="row text-center">
                         <div className='col-md-6 col-sm-12'>
-                            <Link to="/catalogue"><button type="button" className="btn btn-primary-outline w-100 py-4 text-white fs-3 btn-scale">Your Catalogue</button></Link>
+                            <Link to="/catalogue"><button type="button" className="btn btn-primary-outline w-100 py-4 text-white fs-3 btn-scale">View Your Catalogue</button></Link>
                         </div>
                         <div className='col-md-6 col-sm-12'>
                             <Link to="/new-event"><button type="button" className="btn btn-primary-outline w-100 py-4 text-white fs-3 btn-scale">Create New Event</button></Link> 
@@ -48,23 +48,61 @@ function Home() {
                 )}
             </div>
 
-            <SearchBar
-                value={searchTerm}
-                onChange={(val) => setSearchTerm(val)}
-            />
+            {isAuthenticated ? (
+                <>
+                    <SearchBar
+                        value={searchTerm}
+                        onChange={(val) => setSearchTerm(val)}
+                    />
 
-            {isAuthenticated && (
-                <div className='mb-5'>
-                    {/* Upcoming Event cards */}
-                    <h4 className="mb-3 fw-light text-white">Upcoming Events</h4>
-                    <div className="row">
-                        {filteredEvents.length > 0 ? (
-                            filteredEvents.map(evt => (
-                                <EventCard key={evt.id ?? evt._id} event={evt} />
-                            ))
-                        ) : (
-                            <p>No upcoming events.</p>
-                        )}
+                    <div className='mb-5'>
+                        {/* Upcoming Event cards */}
+                        <h4 className="mb-3 fw-light text-white">Upcoming Events</h4>
+                        <div className="row">
+                            {filteredEvents.length > 0 ? (
+                                filteredEvents.map(evt => (
+                                    <EventCard key={evt.id ?? evt._id} event={evt} />
+                                ))
+                            ) : (
+                                <p>No upcoming events.</p>
+                            )}
+                        </div>
+                    </div>
+                </>
+            ) : (
+                <div className="text-white">
+                    <div className="row my-5">
+                        <div className="col-md-6 col-sm-12">
+                            <h3 className="text-start">New to NestPlan?</h3>
+                            <p className="text-start">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Modi dolorem, harum dolores architecto neque numquam nobis amet, nulla laudantium labore in ipsum. Quas eligendi fugiat non ipsum cupiditate animi voluptates?</p>
+                            <Link to="/account"><button type="button" className="btn btn-primary-outline w-100 py-4 text-white fs-3 btn-scale mt-4">Join NestPlan</button></Link>
+                        </div>
+                        
+                        <div className="col-md-6 col-sm-12 text-center">
+                            <img src="https://tse4.mm.bing.net/th/id/OIP.ndCKdMbJTMQkzLuC72moswHaFE?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3" className={`${styles.homeImg}`} alt="New to NestPlan?" />
+                        </div>
+                    </div>
+                    <hr />
+                    <div className="row my-5">
+                        <div className="col-md-6 col-sm-12 text-center">
+                            <img src="https://tse4.mm.bing.net/th/id/OIP.ndCKdMbJTMQkzLuC72moswHaFE?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3" className={`${styles.homeImg}`} alt="Everything in one place" />
+                        </div>
+                        
+                        <div className="col-md-6 col-sm-12">
+                            <h3 className="text-end">Everything in one place</h3>
+                            <p className="text-end">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Modi dolorem, harum dolores architecto neque numquam nobis amet, nulla laudantium labore in ipsum. Quas eligendi fugiat non ipsum cupiditate animi voluptates?</p>
+                        </div>
+                    </div>
+                    <hr />
+                    <div className="row my-5">
+                        <div className="col-md-6 col-sm-12 ">
+                            <h3 className="text-start">Never miss a moment</h3>
+                            <p className="text-start">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Modi dolorem, harum dolores architecto neque numquam nobis amet, nulla laudantium labore in ipsum. Quas eligendi fugiat non ipsum cupiditate animi voluptates?</p>
+                        </div>
+                        
+                        <div className="col-md-6 col-sm-12 text-center">
+                            <img src="https://tse4.mm.bing.net/th/id/OIP.ndCKdMbJTMQkzLuC72moswHaFE?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3" className={`${styles.homeImg}`} alt="Never miss a moment" />
+                        </div>
                     </div>
                 </div>
             )}

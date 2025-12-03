@@ -34,6 +34,7 @@ function Login() {
                     <input
                         value={form.username}
                         placeholder='Username'
+                        className='input-glass'
                         onChange={e => {
                             const next = {...form, username: e.target.value};
                             setForm({...form, username: e.target.value})   
@@ -45,6 +46,7 @@ function Login() {
                     <input 
                         type="password"
                         placeholder='Password'
+                        className='input-glass'
                         value={form.password}
                         onChange={e => {
                             const next = {...form, password: e.target.value};
@@ -54,7 +56,7 @@ function Login() {
                     />
                 </li>
                 <li className="m-2">
-                    <button type="submit" className="btn btn-secondary" disabled={loading || !validForm}>Login</button>
+                    <button type="submit" className="btn btn-secondary-outline text-white btn-scale" disabled={loading || !validForm}>Login</button>
                 </li>
             </ul>
             {error && <div>Error: {error}</div>}

@@ -53,10 +53,14 @@ function Event() {
                         <p className="lead fs-3">{event.startTime} to {event.endTime}, {event.date}</p>
                         <p className="lead fs-3">{event?.description ?? "Lorem ipsum dolor sit amet."}</p>
                         <p className="lead fs-3 text-capitalize">{event.location}</p>
-                        <button type="button" className="btn btn-danger" onClick={handleDeleteEvent}>Delete Event</button>
-                        <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            Edit Event
-                        </button>
+                        <div className="row g-3 mt-4">
+                            <button type="button" className="btn btn-danger-outline text-danger btn-scale col-md-6 col-sm-12 fs-3" onClick={handleDeleteEvent}>
+                                Delete Event
+                            </button>
+                            <button type="button" className="btn btn-primary-outline text-white btn-scale col-md-6 col-sm-12 fs-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                Edit Event
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
