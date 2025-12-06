@@ -2,9 +2,6 @@ import React, { createContext, useCallback, useContext, useState } from "react";
 import { login as apiLogin } from "../apis/login";
 import { register as apiRegister} from "../apis/register";
 
-// States
-import { useEventsState } from "./eventsState";
-
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {

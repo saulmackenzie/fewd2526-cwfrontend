@@ -12,7 +12,6 @@ export const editEvent = async (event) => {
             date:               event.date,
             startTime:          event.startTime,
             endTime:            event.endTime,
-            user:               event.user,
             familyId:           event.familyId
         }),
     });

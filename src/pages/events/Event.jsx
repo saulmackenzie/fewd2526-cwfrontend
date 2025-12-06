@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 // States
 import { useEventsState } from "../../states/eventsState";
-import { useAuthState } from "../../states/authState";
 
 // API
 import deleteEvent from "../../apis/deleteEvent";

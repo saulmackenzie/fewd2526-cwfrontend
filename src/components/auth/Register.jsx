@@ -4,9 +4,6 @@ import { useNavigate } from 'react-router-dom';
 // States
 import { useAuthState } from '../../states/authState';
 
-// CSS
-import styles from '../css/AuthForm.module.css';
-
 function Register() {
     const { register, login, loading, error } = useAuthState();
     const [form, setForm] = useState({ username: '', password: '' });

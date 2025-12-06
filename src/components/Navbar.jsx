@@ -27,7 +27,7 @@ export default function Navbar() {
               <NavLink className={({ isActive }) => "nav-link" + (isActive ? " active" : "")} to="/about">About Us</NavLink>
             </li>
             <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">{user?.username || "Account"}</a>
+              <button className="nav-link dropdown-toggle" data-bs-toggle="dropdown">{user?.username || "Account"}</button>
               <ul className="dropdown-menu dropdown-menu-end shadow-sm bg-dark ui-gradient">
                 {isAuthenticated && (<li><NavLink className="dropdown-item text-white" to="/catalogue">My Event Catalogue</NavLink></li>)} 
                 <li><NavLink className={({isActive}) => "dropdown-item" + (isActive ? " active": "")} to="/account">{isAuthenticated ? (
