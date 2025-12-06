@@ -1,6 +1,6 @@
 export const editEvent = async (event) => {
     const id = event.id;
-    const res = await fetch(`http://localhost:3002/update-event/${encodeURIComponent(id)}`, {
+    const res = await fetch(`https://fewd2526-cwbackend.onrender.com/update-event/${encodeURIComponent(id)}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

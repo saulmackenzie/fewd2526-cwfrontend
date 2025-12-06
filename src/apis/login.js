@@ -1,5 +1,5 @@
 export const login = async (credentials) => {
-    const res = await fetch('http://localhost:3002/login', {
+    const res = await fetch('https://fewd2526-cwbackend.onrender.com/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

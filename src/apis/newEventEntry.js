@@ -1,5 +1,5 @@
 export const newEventEntry = async (eventData) => {
-    const res = await fetch('http://localhost:3002/new-event-entry', {
+    const res = await fetch('https://fewd2526-cwbackend.onrender.com/new-event-entry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

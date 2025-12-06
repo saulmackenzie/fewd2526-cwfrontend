@@ -1,5 +1,5 @@
 export const register = async (userData) => {
-    const res = await fetch('http://localhost:3002/register', {
+    const res = await fetch('https://fewd2526-cwbackend.onrender.com/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -1,5 +1,5 @@
 export const allUsers = async () => {
-    const res = await fetch('http://localhost:3002/all-users', {
+    const res = await fetch('https://fewd2526-cwbackend.onrender.com/all-users', {
        method: 'GET',
        headers: { 'Content-Type': 'application/json' }, 
     });

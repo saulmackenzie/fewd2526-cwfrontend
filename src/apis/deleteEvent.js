@@ -1,6 +1,6 @@
 export const deleteEvent = async (event) => {
     const id = event._id;
-    const res = await fetch(`http://localhost:3002/delete-event/${encodeURIComponent(id)}`, {
+    const res = await fetch(`https://fewd2526-cwbackend.onrender.com/delete-event/${encodeURIComponent(id)}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

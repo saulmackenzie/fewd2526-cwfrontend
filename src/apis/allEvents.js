@@ -1,5 +1,5 @@
 export const allEvents = async (familyId) => {
-    const res = await fetch(`http://localhost:3002/all-events?familyId=${encodeURIComponent(familyId)}`, {
+    const res = await fetch(`https://fewd2526-cwbackend.onrender.com/all-events?familyId=${encodeURIComponent(familyId)}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     });
