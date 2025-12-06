@@ -1,0 +1,41 @@
+.heroSection {
+  position: relative; 
+  z-index: 0;         
+}
+
+.heroSection::before {
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  top: -125px;
+  right: 1;
+
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  filter: blur(40px);
+
+  pointer-events: none; 
+  z-index: -1;
+}
+
+.heroSection::after {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  top: -150px;
+  right: 1;
+
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 50%;
+  filter: blur(80px);
+
+  pointer-events: none;
+  z-index: -1;
+}
+
+.homeImg:hover {
+  transform: translateY(-5px);
+  transition: transform 150ms ease;
+}

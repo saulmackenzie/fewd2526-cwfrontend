@@ -74,16 +74,15 @@ function EditEventForm({ eventData }) {
         <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog">
             <div className="modal-content">
-              <div className="modal-header">
-                <h1 className="modal-title fs-5" id="exampleModalLabel">Edit {eventData.event}</h1>
-                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <div className="modal-header bg-dark ui-gradient text-white">
+                <h1 className="modal-title fs-5 text-capitalize" id="exampleModalLabel">Edit {eventData.event}</h1>
               </div>
-              <div className="modal-body">
+              <div className="modal-body bg-dark ui-gradient text-white">
                  <form onSubmit={handleEditEvent} className="row g-2 align-items-center mb-3">
                 <div className="col-md-3">
                     <label className="form-label">Event Name:</label>
                     <input 
-                        className="form-control"
+                        className="form-control input-glass"
                         placeholder="Swimming, Tennis..."
                         value={`${form.event}`}
                         onChange={e => {
@@ -96,7 +95,7 @@ function EditEventForm({ eventData }) {
                     <label className="form-label">Date:</label>
                     <input 
                         type="date"
-                        className="form-control" 
+                        className="form-control input-glass" 
                         value={`${form.date}`}
                         onChange={e => {
                             setForm({...form, date: e.target.value})   
@@ -108,7 +107,7 @@ function EditEventForm({ eventData }) {
                     <label className="form-label">Start Time:</label>
                     <input 
                         type="time" 
-                        className="form-control"
+                        className="form-control input-glass"
                         value={`${form.startTime}`}
                         onChange={e => {
                             setForm({...form, startTime: e.target.value})   
@@ -120,7 +119,7 @@ function EditEventForm({ eventData }) {
                     <label className="form-label">End Time:</label>
                     <input
                         type="time"
-                        className="form-control"
+                        className="form-control input-glass"
                         value={`${form.endTime}`}
                         onChange={e => {
                             setForm({...form, endTime: e.target.value})   
@@ -131,7 +130,7 @@ function EditEventForm({ eventData }) {
                 <div className="col-md-3">
                     <label className="form-label">Location:</label>
                     <input 
-                        className="form-control" 
+                        className="form-control input-glass" 
                         placeholder="Swim Centre, Tennis Park... "
                         value={`${form.location}`}
                         onChange={e => {
@@ -143,7 +142,7 @@ function EditEventForm({ eventData }) {
                 <div className="col-md-3">
                     <label className="form-label">Required Items:</label>
                     <input 
-                        className="form-control" 
+                        className="form-control input-glass" 
                         placeholder="Trunks, Tennis Racket... "
                         value={`${form.requiredItems}`}
                         onChange={e => {
@@ -153,12 +152,12 @@ function EditEventForm({ eventData }) {
                     />
                 </div>
 
-                <button type="submit" className="btn btn-primary" disabled={!validForm}>Save changes</button>
+                <button type="submit" className="btn btn-primary-outline btn-scale text-white fs-4 py-3 mt-4" disabled={!validForm}>Save Edit</button>
 
             </form>
               </div>
-              <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <div className="modal-footer bg-dark ui-gradient">
+                <button type="button" className="btn btn-primary-outline btn-scale text-danger" data-bs-dismiss="modal">Close</button>
               </div>
             </div>
           </div>
