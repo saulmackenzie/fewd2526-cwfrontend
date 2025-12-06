@@ -24,7 +24,7 @@ function Catalogue() {
 
     return (
         <div className="container mt-4 py-4">
-            <h1>Events Catalogue</h1>
+            <h1 className="text-white">Events Catalogue</h1>
 
             <SearchBar 
                 value={searchTerm}
@@ -32,7 +32,7 @@ function Catalogue() {
             />
 
             {/* Event cards */}
-            <h5 className="my-3">Upcoming (next 14 days)</h5>
+            <h5 className="my-3 text-white">Upcoming Events</h5>
             {filteredEvents.length > 0 ? (
                 filteredEvents.map(evt => (
                     <EventCard key={evt.id ?? evt._id} event={evt} />

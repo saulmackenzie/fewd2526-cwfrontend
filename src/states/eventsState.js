@@ -52,7 +52,7 @@ export function EventsProvider({ children }) {
             setLoading(false);
             load();
         }
-    }, [isAuthenticated, user]);
+    }, [isAuthenticated, user, load]);
 
     useEffect(() => {
         load();
