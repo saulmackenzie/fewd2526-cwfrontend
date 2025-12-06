@@ -28,12 +28,12 @@ export default function Navbar() {
             </li>
             <li className="nav-item dropdown">
               <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">{user?.username || "Account"}</a>
-              <ul className="dropdown-menu dropdown-menu-end shadow-sm">
-                {isAuthenticated && (<li><NavLink className="dropdown-item" to="/catalogue">My Event Catalogue</NavLink></li>)} 
+              <ul className="dropdown-menu dropdown-menu-end shadow-sm bg-dark ui-gradient">
+                {isAuthenticated && (<li><NavLink className="dropdown-item text-white" to="/catalogue">My Event Catalogue</NavLink></li>)} 
                 <li><NavLink className={({isActive}) => "dropdown-item" + (isActive ? " active": "")} to="/account">{isAuthenticated ? (
                   <span className="text-danger">Logout</span>
                 ) : (
-                  <span>Login / Register</span>
+                  <span className="text-white">Login / Register</span>
                 )}</NavLink></li>
               </ul>
             </li>
